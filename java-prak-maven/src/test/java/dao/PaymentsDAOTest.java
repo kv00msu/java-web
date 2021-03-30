@@ -43,6 +43,6 @@ public class PaymentsDAOTest {
     @org.junit.jupiter.api.Test
     void listOfPayments() throws Exception{
         PaymentsDAO paymentsDAO = new PaymentsDAO();
-        Assertions.assertEquals(1,paymentsDAO.listOfPayments().get(0).getId());
+        Assertions.assertEquals(5,paymentsDAO.listOfPayments().get(0).getId());
     }
 }
