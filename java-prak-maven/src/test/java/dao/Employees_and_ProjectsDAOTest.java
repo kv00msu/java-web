@@ -44,7 +44,7 @@ public class Employees_and_ProjectsDAOTest {
     @org.junit.jupiter.api.Test
     void listOfEmployees_and_Projects() throws Exception{
         Employees_and_ProjectsDAO employees_and_projectsDAO = new Employees_and_ProjectsDAO();
-        Assertions.assertEquals(1,employees_and_projectsDAO.listOfEmployees_and_Projects().get(0).getId());
+        Assertions.assertEquals(6,employees_and_projectsDAO.listOfEmployees_and_Projects().get(0).getId());
     }
 
 }
