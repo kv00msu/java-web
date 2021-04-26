@@ -1,0 +1,41 @@
+<html>
+<body>
+<div>Info about Project</div>
+{{#projects}}
+    <div>
+        <span>Id:<b>{{id}}</b></span><br>
+        <span>Project name:<b>{{project_name}}</b></span><br>
+        <span>Start date:<b>{{start_date}}</b></span><br>
+        <span>End date:<b>{{end_date}}</b></span><br>
+
+    </div>
+{{/projects}}
+
+<span>Positions in project:</span>
+{{#positions}}
+    <div>
+        <span><b>{{position}}</b></span>
+    </div>
+{{/positions}}
+
+<div>List of employees in this project:</div>
+{{#emp_and_pr}}
+    <div>
+        <span><b>{{id}}</b></span>
+        <span><b>{{Full_name}}</b></span>
+    </div>
+{{/emp_and_pr}}
+
+<div>
+    <form method="post" action="http://localhost:8080/Projects/{{id}}">
+        <button type="submit">Удалить</button>
+    </form>
+    <form method="post">
+        <input type="text" name="project_name" placeholder="Введите название проекта"/><br>
+        <input type="text" name="start_date" placeholder="Введите дату начала проекта"/><br>
+        <input type="text" name="end_date" placeholder="Введите дату окончания проекта"/><br>
+        <button type="submit">Изменить</button>
+    </form>
+</div>
+</body>
+</html>

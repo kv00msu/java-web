@@ -1,0 +1,20 @@
+<html>
+<body>
+    <div>List of Projects</div>
+    {{#projects}}
+        <div>
+            <a href="http://localhost:8080/Projects/{{id}}">
+                <b>{{id}}</b>
+                <span>{{project_name}}</span>
+            </a>
+        </div>
+    {{/projects}}
+    <div>
+        <form method="get" action="http://localhost:8080/Projects/add">
+            <a href="http://localhost:8080/Projects/add">
+                <button type="submit">Добавить проект в список</button>
+            </a>
+        </form>
+    </div>
+</body>
+</html>

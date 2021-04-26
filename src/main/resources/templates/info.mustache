@@ -1,0 +1,48 @@
+<html>
+<body>
+    <div>Info about Employee</div>
+    {{#employee}}
+        <div>
+                <span>Id:<b>{{id}}</b></span><br>
+                <span>Full name:<b>{{full_name}}</b></span><br>
+                <span>Home address:<b>{{home_address}}</b></span><br>
+                <span>Work experience:<b>{{work_experience}}</b></span><br>
+                <span>Education:<b>{{education}}</b></span><br>
+                <span>Date of birth:<b>{{date_of_birth}}</b></span><br>
+        </div>
+    {{/employee}}
+    {{#emp_and_pr}}
+        <div>
+            <span>Project        Position        Start work        End work</span><br>
+            {{#project}}
+                <span>{{project_name}}</span>
+            {{/project}}
+            <span>{{position}}</span>
+            <span>{{start_work}}</span>
+            <span>{{end_work}}</span>
+        </div>
+    {{/emp_and_pr}}
+    <div>
+        <form method="post" action="http://localhost:8080/{{id}}">
+            <button type="submit">Удалить</button>
+        </form>
+        <form method="post">
+            <input type="text" name="full_name" placeholder="Введите имя и фамилию сотрудника"/><br>
+            <input type="text" name="work_experience" placeholder="Введите опыт работы"/><br>
+            <input type="text" name="home_address" placeholder="Введите домашний адрес"/><br>
+            <input type="text" name="date_of_birth" placeholder="Введите дату рождения"/><br>
+            <input type="text" name="education" placeholder="Введите образование"/><br>
+            <input type="text" name="position" placeholder="Введите должность"/><br>
+            <input type="text" name="start_work" placeholder="Введите дату начала работы в проекте"/><br>
+            <input type="text" name="end_work" placeholder="Введите дату окончания работы в проекте"/><br>
+            <input type="text" name="project_name" placeholder="Введите название проекта"/><br>
+            <button type="submit">Изменить</button>
+        </form>
+        <form method="get" action="http://localhost:8080/Employees/{{id}}/history">
+            <a href="http://localhost:8080/Employees/{{id}}/history">
+                <button type="submit">История платежей</button>
+            </a>
+        </form>
+    </div>
+</body>
+</html>

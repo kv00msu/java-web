@@ -1,0 +1,44 @@
+<html>
+<body>
+    <div>Choose of criteria:</div>
+    <div>
+        <span>Position:</span>
+        <form method="post">
+            <input type="text" name="position" placeholder="Введите должность сотрудника"/>
+            <button type="submit">Выбрать</button>
+        </form><br>
+        <span>Work experience:</span>
+        <form method="post">
+            <input type="text" name="work_experience" placeholder="Введите опыт работы"/>
+            <button type="submit">Выбрать</button>
+        </form><br>
+        <span>Project name:</span>
+        <form method="post">
+            <input type="text" name="project_name" placeholder="Введите проект"/>
+            <button type="submit">Выбрать</button>
+        </form><br>
+        <span>Prize:</span>
+        <form method="post">
+            <input type="text" name="prize" placeholder="Введите премию"/>
+            <button type="submit">Выбрать</button>
+        </form><br>
+    </div>
+    <div>List of Employees</div>
+    {{#employees}}
+    <div>
+        <a href="http://localhost:8080/{{id}}">
+        <b>{{id}}</b>
+        <span>{{full_name}}</span>
+        </a>
+    </div>
+    {{/employees}}
+    <div>
+        <form method="get" action="http://localhost:8080/Employees/add">
+            <a href="http://localhost:8080/Employees/add">
+                <button type="submit">Добавить рабочего в список</button>
+            </a>
+        </form>
+
+    </div>
+</body>
+</html>

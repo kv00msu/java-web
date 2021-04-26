@@ -1,0 +1,23 @@
+<html>
+<body>
+    <div>History of payments</div>
+    {{#payments}}
+    <div>
+        <span>money</span>
+        <span>special date</span>
+        <span>project name</span>
+        <span>position</span>
+        <span>work experience</span><br>
+        <span>{{money}}</span>
+        <span>{{special_date}}</span>
+        {{#emp_and_pr}}
+            <span>{{position}}</span>
+            <span>{{project_name}}</span>
+        {{/emp_and_pr}}
+        {{#employee}}
+            <span>{{work_experience}}</span>
+        {{/employee}}
+        </div>
+    {{/payments}}
+</body>
+</html>

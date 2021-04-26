@@ -1,0 +1,13 @@
+<html>
+<body>
+<div>List of Employees</div>
+    {{#employees}}
+        <div>
+            <a href="http://localhost:8080/{{id}}">
+                <b>{{id}}</b>
+                <span>{{full_name}}</span>
+            </a>
+        </div>
+    {{/employees}}
+</body>
+</html>

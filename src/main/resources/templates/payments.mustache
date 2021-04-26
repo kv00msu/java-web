@@ -1,0 +1,32 @@
+<html>
+<body>
+        <div>
+            <span>money special date project name employee name work experience position</span>
+        </div>
+    {{#payments}}
+        <div>
+            <span>{{money}}</span>
+            <span>{{#special_date}} {{special_date}} {{/special_date}} {{^special_date}}null{{/special_date}}</span>
+
+            <span>{{project_name}}</span>
+            {{#employees}}
+                <span>{{full_name}}</span>
+            {{/employees}}
+            <span>{{work_experience}}</span>
+            <span>{{position}}</span>
+            <form method="get" action="http://localhost:8080/Payments/change/{{Id}}">
+                <a href="http://localhost:8080/Payments/change/{{Id}}">
+                    <button type="submit">Изменить выплату</button>
+                </a>
+            </form>
+        </div>
+    {{/payments}}
+<div>
+    <form method="get" action="http://localhost:8080/Payments/add">
+        <a href="http://localhost:8080/Payments/add">
+            <button type="submit">Добавить выплату</button>
+        </a>
+    </form>
+</div>
+</body>
+</html>
