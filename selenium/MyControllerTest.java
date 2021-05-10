@@ -8,8 +8,9 @@ import entity.Employees;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.sql.Date;
@@ -29,6 +30,7 @@ public class MyControllerTest {
         driver.quit();
     }
 
+
     @Test
     public void start() {
         driver.get("http://localhost:8080/");
@@ -41,18 +43,41 @@ public class MyControllerTest {
     }
     @Test
     public void add() {
-        Employees employees = new Employees();
-        EmployeesDAO employeesDAO = new EmployeesDAO();
-        List<Employees> listEmployees = employeesDAO.listOfEmployees();
-        Assertions.assertEquals("Maken Alfarabi", listEmployees.get(listEmployees.size() - 1).getFull_name());
+        driver.get("http://localhost:8080/Employees/add?");
+        WebElement button = driver.findElementByXPath("/html/body/div/form[1]/button");
+        WebElement full_name = driver.findElementByXPath("/html/body/div/form[1]/input[1]");
+        WebElement work_experience = driver.findElementByXPath("/html/body/div/form[1]/input[2]");
+        WebElement home_address = driver.findElementByXPath("/html/body/div/form[1]/input[3]");
+        WebElement date_of_birth = driver.findElementByXPath("/html/body/div/form[1]/input[4]");
+        WebElement education = driver.findElementByXPath("/html/body/div/form[1]/input[5]");
+        WebElement position = driver.findElementByXPath("/html/body/div/form[1]/input[6]");
+        WebElement start_work = driver.findElementByXPath("/html/body/div/form[1]/input[7]");
+        WebElement end_work = driver.findElementByXPath("/html/body/div/form[1]/input[8]");
+        WebElement project_name = driver.findElementByXPath("/html/body/div/form[1]/input[9]");
+        full_name.sendKeys("Vasya Pupkin");
+        work_experience.sendKeys("2 years");
+        home_address.sendKeys("Mustafina 4");
+        date_of_birth.sendKeys("2002-04-21");
+        education.sendKeys("KSU");
+        position.sendKeys("director");
+        start_work.sendKeys("2017-08-04");
+        end_work.sendKeys("2018-04-01");
+        project_name.sendKeys("green city");
+        button.click();
+        driver.get("http://localhost:8080/Employees");
+        WebElement employee = driver.findElementByXPath("/html/body/div[7]/a");
+        Assertions.assertEquals("14Vasya Pupkin", employee.getText());
     }
     @Test
     public void change() {
-        Employees employees = new Employees();
-        EmployeesDAO employeesDAO = new EmployeesDAO();
-        List<Employees> listEmployees = employeesDAO.listOfEmployees();
-        employees = listEmployees.get(0);
-        Assertions.assertEquals("4 years",employees.getWork_experience());
+        driver.get("http://localhost:8080/Employee/3");
+        WebElement button = driver.findElementByXPath("/html/body/div[4]/form[2]/button");
+        WebElement home_address = driver.findElementByXPath("/html/body/div[4]/form[2]/input[3]");
+        home_address.sendKeys("Nazarbaeva 26");
+        button.click();
+        driver.get("http://localhost:8080/Employee/3");
+        WebElement employee = driver.findElementByXPath("/html/body/div[2]/span[3]/b");
+        Assertions.assertEquals("Nazarbaeva 26", employee.getText());
     }
     @Test
     public void criteria() {
@@ -67,7 +92,7 @@ public class MyControllerTest {
     @Test
     public void historyGet() {
         driver.get("http://localhost:8080/Employees/1/history?");
-        Assertions.assertEquals("50000", driver.findElementsByTagName("span").get(5).getText());
+        Assertions.assertEquals("85000", driver.findElementsByTagName("span").get(5).getText());
     }
     @Test
     public void projects() {
@@ -79,29 +104,66 @@ public class MyControllerTest {
         driver.get("http://localhost:8080/Projects/1");
         Assertions.assertEquals("Project name:" + '"' + "clean" + '"', driver.findElementsByTagName("span").get(1).getText());
     }
-    @Test
-    public void addProject() {
-        ProjectsDAO projectsDAO = new ProjectsDAO();
-        Assertions.assertEquals("green city", projectsDAO.listOfProjects().get(projectsDAO.listOfProjects().size() - 1).getProject_name());
-    }
+
     @Test
     public void Payments() {
         driver.get("http://localhost:8080/Payments");
-        Assertions.assertEquals("30000", driver.findElementsByTagName("span").get(1).getText());
+        Assertions.assertEquals("85000", driver.findElementsByTagName("span").get(1).getText());
+    }
+    @Test
+    public void caddProject() {
+        driver.get("http://localhost:8080/Projects/add?");
+        WebElement project_name = driver.findElementByXPath("/html/body/div/form[1]/input[1]");
+        WebElement start_date = driver.findElementByXPath("/html/body/div/form[1]/input[2]");
+        WebElement end_date = driver.findElementByXPath("/html/body/div/form[1]/input[3]");
+        WebElement button = driver.findElementByXPath("/html/body/div/form[1]/button");
+        project_name.sendKeys("my project");
+        start_date.sendKeys("2021-01-02");
+        end_date.sendKeys("2021-03-08");
+        button.click();
+        driver.get("http://localhost:8080/Projects");
+        Assertions.assertEquals("my project", driver.findElementByXPath("/html/body/div[4]/a/span").getText());
     }
     @Test
     public void addPayment() {
-        PaymentsDAO paymentsDAO = new PaymentsDAO();
-        Assertions.assertEquals(30000, paymentsDAO.listOfPayments().get(paymentsDAO.listOfPayments().size() - 1).getMoney());
+        driver.get("http://localhost:8080/Payments/add?");
+        WebElement button = driver.findElementByXPath("/html/body/div/form[1]/button");
+        WebElement money = driver.findElementByXPath("/html/body/div/form[1]/input[1]");
+        WebElement position = driver.findElementByXPath("/html/body/div/form[1]/input[2]");
+        WebElement work_experience = driver.findElementByXPath("/html/body/div/form[1]/input[3]");
+        WebElement project_name = driver.findElementByXPath("/html/body/div/form[1]/input[4]");
+        WebElement date_prize = driver.findElementByXPath("/html/body/div/form[1]/input[5]");
+        WebElement employee_name = driver.findElementByXPath("/html/body/div/form[1]/input[6]");
+        money.sendKeys("25000");
+        position.sendKeys("caller");
+        work_experience.sendKeys("1 year");
+        project_name.sendKeys("my project");
+        date_prize.sendKeys("2021-05-09");
+        employee_name.sendKeys("Vasya Pupkin");
+        button.click();
+        driver.get("http://localhost:8080/Payments");
+        Assertions.assertEquals("25000", driver.findElementByXPath("/html/body/div[3]/span[1]").getText());
     }
     @Test
     public void changePayment() {
         driver.get("http://localhost:8080/Payments/change/1?");
-        Assertions.assertEquals("",driver.findElementByName("money").getText());
+        WebElement money = driver.findElementByXPath("/html/body/div/form/input[1]");
+        WebElement button = driver.findElementByXPath("/html/body/div/form/button");
+        money.sendKeys("85000");
+        button.click();
+        driver.get("http://localhost:8080/Payments");
+        Assertions.assertEquals("85000", driver.findElementByXPath("/html/body/div[2]/span[1]").getText());
     }
     @Test
     public void changeProject() {
-        ProjectsDAO projectsDAO = new ProjectsDAO();
-        Assertions.assertEquals(Date.valueOf("2020-01-03"), projectsDAO.listOfProjects().get(1).getStart_date());
+        driver.get("http://localhost:8080/Projects/2");
+        WebElement button = driver.findElementByXPath("/html/body/div[4]/form[2]/button");
+        WebElement start_date = driver.findElementByXPath("/html/body/div[4]/form[2]/input[2]");
+        start_date.sendKeys("2020-01-02");
+        button.click();
+        driver.get("http://localhost:8080/Projects/2");
+        WebElement project = driver.findElementByXPath("/html/body/div[2]/span[3]/b");
+        Assertions.assertEquals("2020-01-02", project.getText());
     }
+
 }
