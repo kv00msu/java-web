@@ -195,9 +195,9 @@ public class GreetingController {
         PaymentsDAO paymentsDAO = new PaymentsDAO();
         List<Payments> payments = paymentsDAO.listOfPayments();
         EmployeesDAO employeesDAO = new EmployeesDAO();
+        model.put("payments", payments);
         for (int i = 0; i < payments.size(); i++) {
-            model.put("payments", payments.get(i));
-            Employees employees = employeesDAO.getById(payments.get(i).getId());
+            Employees employees = payments.get(i).getEmployee();
             model.put("employees", employees);
         }
         return "payments";
